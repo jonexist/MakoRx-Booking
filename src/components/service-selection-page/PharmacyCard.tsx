@@ -3,14 +3,21 @@ import { PharmacyDataProps } from '../../api/getPharmacy';
 
 type PharmacyCardProps = {
   data: PharmacyDataProps;
+  selectedId: string;
+  onSelect: (pharmacy: PharmacyDataProps) => void;
 };
 
-export const PharmacyCard = ({ data }: PharmacyCardProps) => {
+export const PharmacyCard = ({
+  data,
+  onSelect,
+  selectedId,
+}: PharmacyCardProps) => {
   return (
     <Card
       style={{
         width: '20rem',
         zIndex: 1000,
+        backgroundColor: selectedId === data.id ? '#E8F7FF' : 'white',
       }}
     >
       <CardBody>
@@ -19,7 +26,7 @@ export const PharmacyCard = ({ data }: PharmacyCardProps) => {
         </CardText>
         <CardTitle>{data.text}</CardTitle>
         <CardText>{data.place_name}</CardText>
-        <Button>See offer</Button>
+        <Button onClick={() => onSelect(data)}>See offer</Button>
       </CardBody>
     </Card>
   );
