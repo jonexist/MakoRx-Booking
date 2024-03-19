@@ -9,7 +9,7 @@ export const Navbar = () => {
       </NavbarBrand>
       <Nav>
         <Nav.Item>
-          <Nav.Link href='/'>
+          <Nav.Link href='https://www.makorxcareconnect.com/'>
             <Button variant='primary' className='custom-btn'>
               HOMEPAGE
             </Button>
