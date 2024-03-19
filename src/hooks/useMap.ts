@@ -1,5 +1,8 @@
 import mapboxgl from 'mapbox-gl';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import getPharmacy, { PharmacyDataProps } from '../api/getPharmacy';
+import getUserLocation from '../utilities/addGeolocateControl';
+import { addNavigationControl } from '../utilities/addNavigationControl';
 import addSearchControl from '../utilities/addSearchControl';
 
 mapboxgl.accessToken = import.meta.env.VITE_API_KEY as string;
@@ -7,59 +10,46 @@ mapboxgl.accessToken = import.meta.env.VITE_API_KEY as string;
 type MapStateProps = {
   lng: number;
   lat: number;
-  zoom: number;
+  zoom?: number;
 };
 
-export const useMapbox = () => {
+export const useMap = () => {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
+  const [pharmacyData, setPharmacyData] = useState<PharmacyDataProps[]>([]);
   const mapRef = useRef<mapboxgl.Map | null>(null);
-  const geocoderRef = useRef(null); // Adjust this type as per the geocoder library you are using
+  const markerRef = useRef<mapboxgl.Marker[]>([]);
+  const geocoderRef = useRef(null);
   const [mapState, setMapState] = useState<MapStateProps>({
-    lng: 0,
-    lat: 0,
-    zoom: 10,
+    lng: -80.5801,
+    lat: 35.4091,
+    zoom: 11,
   });
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setMapState({
-          lng: position.coords.longitude,
-          lat: position.coords.latitude,
-          zoom: 10, // Adjust the zoom level as needed
-        });
-      },
-      (error) => {
-        console.error('Error getting current location:', error);
-        // If user denies location access or an error occurs, fallback to default location
-        setMapState({
-          lng: -80.5801,
-          lat: 35.4091,
-          zoom: 11,
-        });
-      }
-    );
-  }, []);
+  const locationProximity = useMemo(
+    () => [mapState.lng, mapState.lat],
+    [mapState.lat, mapState.lng]
+  );
 
   useEffect(() => {
-    if (mapRef.current) return; // Ensure map is not already initialized
-    if (!mapContainerRef.current) return; // Ensure the div is available
-
+    if (mapRef.current) return;
     const map = new mapboxgl.Map({
-      container: mapContainerRef.current,
-      style: 'mapbox://styles/mapbox/streets-v11',
+      container: mapContainerRef.current!,
+      style: 'mapbox://styles/mapbox/streets-v12',
       center: [mapState.lng, mapState.lat],
       zoom: mapState.zoom,
     });
-
     map.on('move', () => {
       setMapState({
         lng: parseFloat(map.getCenter().lng.toFixed(4)),
         lat: parseFloat(map.getCenter().lat.toFixed(4)),
-        zoom: parseFloat(map.getZoom().toFixed(2)),
       });
     });
+    mapRef.current = map;
+  }, [mapState, locationProximity]);
 
+  useEffect(() => {
+    if (!mapRef.current) return;
+    const map = mapRef.current;
     map.on('load', () => {
       if (!geocoderRef.current) {
         addSearchControl({
@@ -67,16 +57,25 @@ export const useMapbox = () => {
           mapBoxAccessToken: mapboxgl.accessToken,
           geocoderRef,
         });
+        getUserLocation({ map, geolocateRef: geocoderRef });
+        addNavigationControl(map);
       }
     });
+  }, []);
 
-    mapRef.current = map;
+  useEffect(() => {
+    const abortController = new AbortController();
+    if (mapRef.current) {
+      getPharmacy({
+        mapRef: mapRef,
+        locationCoords: locationProximity as [number, number],
+        token: mapboxgl.accessToken,
+        markersRef: markerRef,
+        abortController,
+      }).then((data) => setPharmacyData(data));
+    }
+    return () => abortController.abort();
+  }, [locationProximity]);
 
-    return () => {
-      // Cleanup when component unmounts
-      map.remove();
-    };
-  }, [mapState]);
-
-  return mapContainerRef;
+  return { mapContainerRef, pharmacyData };
 };
