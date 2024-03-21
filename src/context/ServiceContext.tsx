@@ -9,6 +9,9 @@ type ServiceItem = {
   id: number;
   quantity: number;
   selected: boolean;
+  title: string;
+  description: string;
+  price: number;
 };
 
 type ServiceContext = {
@@ -27,6 +30,9 @@ export const ServiceProvider = ({ children }: ServiceProviderProps) => {
     id: service.id,
     quantity: 0,
     selected: false,
+    title: service.title,
+    description: service.description,
+    price: service.price,
   }));
 
   const [serviceItem, setServiceItem] =
@@ -51,7 +57,11 @@ export const ServiceProvider = ({ children }: ServiceProviderProps) => {
     setServiceItem((prev) =>
       prev.map((service) =>
         service.id === id
-          ? { ...service, quantity: service.quantity - 1 }
+          ? {
+              ...service,
+              quantity: service.quantity - 1,
+              selected: service.quantity > 1 ? true : false,
+            }
           : service
       )
     );
@@ -61,7 +71,11 @@ export const ServiceProvider = ({ children }: ServiceProviderProps) => {
     setServiceItem((prev) =>
       prev.map((service) =>
         service.id === id
-          ? { ...service, selected: !service.selected }
+          ? {
+              ...service,
+              selected: !service.selected,
+              quantity: service.selected ? 0 : 1,
+            }
           : service
       )
     );
