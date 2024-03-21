@@ -11,7 +11,7 @@ import { services } from '../data/pharmacyServices';
 import { useMap } from '../hooks/useMap';
 
 export const ServiceSelection = () => {
-  const { serviceItem, serviceQuantity } = useContext(ServiceContext);
+  const { serviceItem } = useContext(ServiceContext);
   const { mapContainerRef, pharmacyData } = useMap();
   const [selectedPharmacy, setSelectedPharmacy] =
     useState<PharmacyDataProps | null>(null);
@@ -23,8 +23,17 @@ export const ServiceSelection = () => {
     });
   };
 
+  const selectedServices = serviceItem.filter((serv) => serv.selected);
+  const total = selectedServices.reduce(
+    (acc, serv) => acc + serv.price * serv.quantity,
+    0
+  );
+
   return (
-    <Container className='mt-4 mb-4'>
+    <Container
+      className='min-vh-100'
+      style={{ paddingTop: '8.5rem', paddingBottom: '1.5rem' }}
+    >
       <TitleSubtitle
         title='Book an Appointment'
         subtitle='Book your pharmacy visit - MAKO Rx Care Connect works together to provide you special services and testing.'
@@ -69,11 +78,13 @@ export const ServiceSelection = () => {
                   );
                 })}
               </Row>
-              <p>Total: {serviceQuantity}</p>
-              {serviceItem.map((serv) =>
-                serv.selected ? <p>{serv.id}</p> : null
+              {selectedServices.length === 0 ? (
+                <div className='text-center mt-3'>
+                  <p className='text-muted'>No services selected</p>
+                </div>
+              ) : (
+                <TotalCard services={selectedServices} total={total} />
               )}
-              <TotalCard />
             </Container>
           </>
         )}
