@@ -9,6 +9,13 @@ type EndpointProps = {
   lat: number;
 };
 
+export interface ServiceType {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+}
+
 export interface PharmacyDataProps {
   id: string;
   place_name: string;
@@ -23,6 +30,8 @@ export interface PharmacyDataProps {
     landmark: boolean;
     maki: string;
   };
+  services: ServiceType[];
+  service?: ServiceType;
 }
 
 type PharmacyProps = {
@@ -55,7 +64,13 @@ const processPharmacyData = ({
 
   markerRef.current.push(marker);
 
-  addPopupToMarker({ map, marker, popupText: pharmacyData.place_name });
+  addPopupToMarker({
+    map,
+    marker,
+    popupText: `<small>${pharmacyData.properties.category.toUpperCase()}</small><br><strong>${
+      pharmacyData.text
+    }</strong><br><small>${pharmacyData.place_name}</small>`,
+  });
 };
 
 const getPharmacy = async ({
@@ -80,7 +95,6 @@ const getPharmacy = async ({
         pharmacyData,
         markerRef: markersRef,
       });
-      console.log(pharmacyData);
     });
     return data.features;
   } catch (error: unknown) {

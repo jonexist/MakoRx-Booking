@@ -2,6 +2,10 @@
 @import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 :root {
   --font-family: "Montserrat", sans-serif !important;
+  --primary-color: #29abe2 !important;
+  --secondary-color: #e9f3ff !important;
+  --font-color-dark: #545f71 !important;
+  --font-color-light: #ffffff !important;
 }
 
 html,
@@ -13,31 +17,30 @@ body {
 }
 
 .navbar-custom {
-  background-color: #e9f3ff !important;
+  background-color: var(--secondary-color);
 }
-
-.custom-btn {
+.navbar-custom .nav-btn {
   border-radius: 50px !important;
-  background-color: #29abe2 !important;
+  background-color: var(--primary-color) !important;
   color: white !important;
   font-weight: 500 !important;
-  border: none !important;
+  border: 1px solid var(--primary-color) !important;
   padding: 10px 20px !important;
 }
-.custom-btn:hover {
-  background-color: #1e90d1 !important;
-  color: white !important;
+.navbar-custom .nav-btn:hover {
+  background-color: var(--font-color-light) !important;
+  color: var(--primary-color) !important;
 }
 
 .title {
   font-size: 24px !important;
   font-weight: 700;
-  color: #545f71 !important;
+  color: var(--font-color-dark);
   margin-bottom: 10px;
 }
 .title .subtitle {
   font-size: 16px !important;
-  color: #545f71 !important;
+  color: var(--font-color-dark);
 }
 
 .map-container {
@@ -48,14 +51,16 @@ body {
   border-radius: 5px !important;
 }
 .map-container .mapboxgl-popup-content {
-  font-size: 15px !important;
-  font-weight: 600 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
 }
 .map-container .mapboxgl-ctrl-geocoder .suggestions {
   font-family: var(--font-family);
+  color: var(--font-color-dark);
 }
 .map-container .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--input {
   font-family: var(--font-family);
+  color: var(--font-color-dark);
 }
 
 .card-container {
@@ -68,4 +73,69 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+.card-container .service-btn {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  border: 1px solid var(--primary-color) !important;
+}
+.card-container .service-btn:hover {
+  background-color: var(--font-color-light) !important;
+  color: var(--primary-color) !important;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+}
+.counter .counter-btn {
+  background-color: var(--font-color-dark);
+  border: 0;
+  border-radius: 0.25rem;
+  color: var(--font-color-light);
+  height: 28px;
+  width: 30px;
+}
+.counter .counter-display {
+  background-color: var(--font-color-light);
+  border: 2px solid var(--font-color-dark);
+  border-radius: 0.25rem;
+  font-weight: 500;
+  height: 28px;
+  margin: 0 5px;
+  text-align: center;
+  width: 32px;
+}
+
+.form-check-inline {
+  margin-right: 0px !important;
+}
+
+.total-card {
+  background-color: var(--secondary-color);
+  padding: 20px;
+  border-radius: 5px;
+}
+.total-card .total-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--font-color-dark);
+}
+.total-card .total-card-subtitle {
+  font-size: 16px;
+  color: var(--font-color-dark);
+}
+.total-card .total-card-price {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--font-color-dark);
+}
+.total-card .total-card-btn {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  border: 1px solid var(--primary-color) !important;
+}
+.total-card .total-card-btn:hover {
+  background-color: var(--font-color-light) !important;
+  color: var(--primary-color) !important;
 }/*# sourceMappingURL=global.css.map */

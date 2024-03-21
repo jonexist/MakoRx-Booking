@@ -21,12 +21,16 @@ export const PharmacyCard = ({
       }}
     >
       <CardBody>
-        <CardText className='text-uppercase'>
+        <CardText className='text-uppercase fw-medium'>
           {data.properties.category}
         </CardText>
-        <CardTitle>{data.text}</CardTitle>
-        <CardText>{data.place_name}</CardText>
-        <Button onClick={() => onSelect(data)}>See offer</Button>
+        <CardTitle>
+          <strong>{data.text}</strong>
+        </CardTitle>
+        <CardText className='fw-medium fs-7'>{data.place_name}</CardText>
+        <Button onClick={() => onSelect(data)} className='service-btn'>
+          See offer
+        </Button>
       </CardBody>
     </Card>
   );

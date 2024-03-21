@@ -8,7 +8,7 @@ type PopupProps = {
 };
 
 export const addPopupToMarker = ({ map, marker, popupText }: PopupProps) => {
-  const popup = new Popup({ offset: 25 }).setText(popupText);
+  const popup = new Popup({ offset: 25 }).setHTML(popupText);
 
   marker.setPopup(popup);
 
