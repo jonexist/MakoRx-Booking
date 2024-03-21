@@ -35,59 +35,28 @@ export const services = [
     description: 'Get home health care services.',
     price: 29.99,
   },
-  // {
-  //   id: 7,
-  //   title: 'Medical Equipment',
-  //   description: 'Get medical equipment at our clinic.',
-  //   price: 39.99,
-  // },
-  // {
-  //   id: 8,
-  //   title: 'Prescription Delivery',
-  //   description: 'Get your prescription delivered to your door.',
-  //   price: 9.99,
-  // },
-  // {
-  //   id: 9,
-  //   title: 'Medical Records',
-  //   description: 'Get your medical records.',
-  //   price: 9.99,
-  // },
-  // {
-  //   id: 10,
-  //   title: 'Medical Consultation',
-  //   description: 'Get a medical consultation.',
-  //   price: 19.99,
-  // },
-  // {
-  //   id: 11,
-  //   title: 'Medical Imaging',
-  //   description: 'Get medical imaging services.',
-  //   price: 29.99,
-  // },
-  // {
-  //   id: 12,
-  //   title: 'Medical Laboratory',
-  //   description: 'Get medical laboratory services.',
-  //   price: 29.99,
-  // },
-  // {
-  //   id: 13,
-  //   title: 'Medical Specialist',
-  //   description: 'Get a medical specialist.',
-  //   price: 49.99,
-  // },
-  // {
-  //   id: 14,
-  //   title: 'Medical Surgery',
-  //   description: 'Get a medical surgery.',
-  //   price: 99.99,
-  // },
-
-  // {
-  //   id: 15,
-  //   title: 'Medical Therapy',
-  //   description: 'Get a medical therapy.',
-  //   price: 29.99,
-  // },
+  {
+    id: 7,
+    title: 'Blood Pressure Check',
+    description: 'Get your blood pressure checked at our clinic.',
+    price: 14.99,
+  },
+  {
+    id: 8,
+    title: 'Diabetes Management',
+    description: 'Get help managing your diabetes with our services.',
+    price: 39.99,
+  },
+  {
+    id: 9,
+    title: 'Nutrition Counseling',
+    description: 'Get nutrition advice from our expert dietitians.',
+    price: 29.99,
+  },
+  {
+    id: 10,
+    title: 'Weight Management',
+    description: 'Get help with weight management from our health experts.',
+    price: 49.99,
+  },
 ];
