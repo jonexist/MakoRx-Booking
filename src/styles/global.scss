@@ -17,10 +17,10 @@ body {
   box-sizing: border-box;
 }
 
-.navbar-custom {
+.navbar__custom {
   background-color: var(--secondary-color);
   z-index: 1000 !important;
-  .nav-btn {
+  .navbtn__custom__btn {
     border-radius: 50px !important;
     background-color: var(--primary-color) !important;
     color: white !important;
@@ -35,18 +35,18 @@ body {
   }
 }
 
-.title {
+.header__title {
   font-size: 24px !important;
   font-weight: 700;
   color: var(--font-color-dark);
   margin-bottom: 10px;
-  .subtitle {
+  .header__subtitle {
     font-size: 16px !important;
     color: var(--font-color-dark);
   }
 }
 
-.map-container {
+.mapboxgl {
   position: relative;
   font-family: var(--font-family);
   width: 100%;
@@ -68,7 +68,7 @@ body {
   }
 }
 
-.card-container {
+.card__container {
   position: absolute;
   z-index: 999;
   top: 10px;
@@ -84,7 +84,7 @@ body {
   }
   -ms-overflow-style: none;
   scrollbar-width: none;
-  .service-btn {
+  .card__service__btn {
     background-color: var(--primary-color) !important;
     color: white !important;
     border: 1px solid var(--primary-color) !important;
@@ -98,7 +98,7 @@ body {
 .counter {
   display: flex;
   align-items: center;
-  .counter-btn {
+  .counter__btn {
     background-color: var(--font-color-dark);
     border: 0;
     border-radius: 0.25rem;
@@ -106,7 +106,7 @@ body {
     height: 28px;
     width: 30px;
   }
-  .counter-display {
+  .counter__display {
     background-color: var(--font-color-light);
     border: 2px solid var(--font-color-dark);
     border-radius: 0.25rem;

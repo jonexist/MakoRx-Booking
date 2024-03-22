@@ -16,11 +16,11 @@ body {
   box-sizing: border-box;
 }
 
-.navbar-custom {
+.navbar__custom {
   background-color: var(--secondary-color);
   z-index: 1000 !important;
 }
-.navbar-custom .nav-btn {
+.navbar__custom .navbtn__custom__btn {
   border-radius: 50px !important;
   background-color: var(--primary-color) !important;
   color: white !important;
@@ -28,43 +28,43 @@ body {
   border: 1px solid var(--primary-color) !important;
   padding: 10px 20px !important;
 }
-.navbar-custom .nav-btn:hover {
+.navbar__custom .navbtn__custom__btn:hover {
   background-color: var(--font-color-light) !important;
   color: var(--primary-color) !important;
 }
 
-.title {
+.header__title {
   font-size: 24px !important;
   font-weight: 700;
   color: var(--font-color-dark);
   margin-bottom: 10px;
 }
-.title .subtitle {
+.header__title .header__subtitle {
   font-size: 16px !important;
   color: var(--font-color-dark);
 }
 
-.map-container {
+.mapboxgl {
   position: relative;
   font-family: var(--font-family);
   width: 100%;
   height: 600px;
   border-radius: 5px !important;
 }
-.map-container .mapboxgl-popup-content {
+.mapboxgl .mapboxgl-popup-content {
   font-size: 14px !important;
   font-weight: 500 !important;
 }
-.map-container .mapboxgl-ctrl-geocoder .suggestions {
+.mapboxgl .mapboxgl-ctrl-geocoder .suggestions {
   font-family: var(--font-family);
   color: var(--font-color-dark);
 }
-.map-container .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--input {
+.mapboxgl .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--input {
   font-family: var(--font-family);
   color: var(--font-color-dark);
 }
 
-.card-container {
+.card__container {
   position: absolute;
   z-index: 999;
   top: 10px;
@@ -78,15 +78,15 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-.card-container ::-webkit-scrollbar {
+.card__container ::-webkit-scrollbar {
   display: none;
 }
-.card-container .service-btn {
+.card__container .card__service__btn {
   background-color: var(--primary-color) !important;
   color: white !important;
   border: 1px solid var(--primary-color) !important;
 }
-.card-container .service-btn:hover {
+.card__container .card__service__btn:hover {
   background-color: var(--font-color-light) !important;
   color: var(--primary-color) !important;
 }
@@ -95,7 +95,7 @@ body {
   display: flex;
   align-items: center;
 }
-.counter .counter-btn {
+.counter .counter__btn {
   background-color: var(--font-color-dark);
   border: 0;
   border-radius: 0.25rem;
@@ -103,7 +103,7 @@ body {
   height: 28px;
   width: 30px;
 }
-.counter .counter-display {
+.counter .counter__display {
   background-color: var(--font-color-light);
   border: 2px solid var(--font-color-dark);
   border-radius: 0.25rem;

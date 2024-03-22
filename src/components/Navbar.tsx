@@ -3,14 +3,14 @@ import Logo from '../assets/MakoRx.svg';
 
 export const Navbar = () => {
   return (
-    <NavbarBs className='navbar-custom d-flex justify-content-between align-items-center shadow-sm p-3 position-fixed w-100'>
+    <NavbarBs className='navbar__custom d-flex justify-content-between align-items-center shadow-sm p-3 position-fixed w-100'>
       <NavbarBrand href='/'>
         <img src={Logo} alt='MakoRx Logo' />
       </NavbarBrand>
       <Nav>
         <Nav.Item>
           <Nav.Link href='https://www.makorxcareconnect.com/'>
-            <Button variant='primary' className='nav-btn'>
+            <Button variant='primary' className='navbtn__custom__btn'>
               HOMEPAGE
             </Button>
           </Nav.Link>

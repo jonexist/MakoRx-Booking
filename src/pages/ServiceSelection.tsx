@@ -39,8 +39,8 @@ export const ServiceSelection = () => {
         subtitle='Book your pharmacy visit - MAKO Rx Care Connect works together to provide you special services and testing.'
       />
 
-      <div ref={mapContainerRef} className='map-container'>
-        <div className='card-container'>
+      <div ref={mapContainerRef} className='mapboxgl'>
+        <div className='card__container'>
           {pharmacyData &&
             pharmacyData.length > 0 &&
             pharmacyData.map((data) => (

@@ -40,17 +40,17 @@ export const ServiceCard = ({ data }: ServiceCardProps) => {
               <div className='counter'>
                 <button
                   onClick={() => decreaseItemQuantity(service.id)}
-                  className='counter-btn'
+                  className='counter__btn'
                   disabled={!isSelected}
                 >
                   &#8722;
                 </button>
-                <span className='counter-display'>
+                <span className='counter__display'>
                   {getItemQuantity(service.id)}
                 </span>
                 <button
                   onClick={() => increaseItemQuantity(service.id)}
-                  className='counter-btn'
+                  className='counter__btn'
                   disabled={!isSelected}
                 >
                   &#43;

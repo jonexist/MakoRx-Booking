@@ -16,7 +16,6 @@ export const PharmacyCard = ({
     <Card
       style={{
         width: '20rem',
-        zIndex: 1000,
         backgroundColor: selectedId === data.id ? '#E8F7FF' : 'white',
       }}
     >
@@ -28,7 +27,7 @@ export const PharmacyCard = ({
           <strong>{data.text}</strong>
         </CardTitle>
         <CardText className='fw-medium fs-7'>{data.place_name}</CardText>
-        <Button onClick={() => onSelect(data)} className='service-btn'>
+        <Button onClick={() => onSelect(data)} className='card__service__btn'>
           See offer
         </Button>
       </CardBody>
