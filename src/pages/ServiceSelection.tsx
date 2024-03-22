@@ -11,7 +11,7 @@ import { useMap } from '../hooks/useMap';
 import { TPharmacyDataProps } from '../type';
 
 export const ServiceSelection = () => {
-  const { serviceItem } = useServiceContext();
+  const { selectedServices, total } = useServiceContext();
   const { mapContainerRef, pharmacyData } = useMap();
   const [selectedPharmacy, setSelectedPharmacy] =
     useState<TPharmacyDataProps | null>(null);
@@ -22,12 +22,6 @@ export const ServiceSelection = () => {
       services: pharmacyServices,
     });
   };
-
-  const selectedServices = serviceItem.filter((serv) => serv.selected);
-  const total = selectedServices.reduce(
-    (acc, serv) => acc + serv.price * serv.quantity,
-    0
-  );
 
   return (
     <Container
@@ -57,7 +51,7 @@ export const ServiceSelection = () => {
             ))}
         </div>
       </div>
-      <div className='d-flex gap-2'>
+      <div className='d-flex gap-2 mt-4'>
         {selectedPharmacy && (
           <>
             <div>
