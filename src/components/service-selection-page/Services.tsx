@@ -1,4 +1,4 @@
-import { Card, CardText, CardTitle, Form } from 'react-bootstrap';
+import { Card, CardText, Form } from 'react-bootstrap';
 import { useServiceContext } from '../../context/useServiceContext';
 import { TPharmacyDataProps, TServiceType } from '../../type';
 import { formatCurrency } from '../../utilities/formatCurrency';
@@ -22,13 +22,18 @@ export const Service = ({ data }: TServiceCardProps) => {
 
   return (
     <>
-      <Card key={service.id}>
+      <Card
+        key={service.id}
+        style={{ backgroundColor: isSelected ? '#E8F7FF' : 'white' }}
+      >
         <Card.Body>
           <div className='d-flex align-items-center justify-content-between'>
-            <CardTitle>{service.title}</CardTitle>
+            <CardText className='fw-bold'>{service.title}</CardText>
             <CardText>{formatCurrency(service.price)}</CardText>
           </div>
-          <CardText className='text-truncate'>{service.description}</CardText>
+          <CardText className='text-truncate fs-6'>
+            {service.description}
+          </CardText>
           <div
             className={
               isSelected
@@ -62,7 +67,7 @@ export const Service = ({ data }: TServiceCardProps) => {
               inline
               label='Select'
               className='user-select-none'
-              id='select'
+              id={`select-${service.id}`}
               type='checkbox'
               onChange={() => toggleServiceSelection(service.id)}
               checked={isSelected}

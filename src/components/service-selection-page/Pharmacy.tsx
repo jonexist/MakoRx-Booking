@@ -23,12 +23,10 @@ export const Pharmacy = ({
         <CardText className='text-uppercase fw-medium'>
           {data.properties.category}
         </CardText>
-        <CardTitle>
-          <strong>{data.text}</strong>
-        </CardTitle>
+        <CardTitle className='fw-bold'>{data.text}</CardTitle>
         <CardText className='fw-medium fs-7'>{data.place_name}</CardText>
         <Button onClick={() => onSelect(data)} className='card__service__btn'>
-          See offer
+          See Services Offer
         </Button>
       </CardBody>
     </Card>

@@ -11,13 +11,13 @@ export const Total: React.FC<TTotalCardProps> = ({ services, total }) => {
   return (
     <Card>
       <Card.Body>
-        <CardTitle>Selected Tests & Services</CardTitle>
+        <CardTitle className='mb-3'>Selected Tests & Services</CardTitle>
         {services.map((service) => (
           <div
             key={service.id}
             className='d-flex align-items-center justify-content-between'
           >
-            <CardText>{service.title}:</CardText>
+            <CardText>{service.title}</CardText>
             <CardText>
               {formatCurrency(service.price * service.quantity)}{' '}
               <sup>x{service.quantity}</sup>
@@ -25,8 +25,12 @@ export const Total: React.FC<TTotalCardProps> = ({ services, total }) => {
           </div>
         ))}
         <div className='d-flex justify-content-between subtotal'>
-          <CardSubtitle className='mt-2'>SUBTOTAL</CardSubtitle>
-          <CardSubtitle className='mt-2'>{formatCurrency(total)}</CardSubtitle>
+          <CardSubtitle className='text-uppercase fw-bold mt-3'>
+            Total
+          </CardSubtitle>
+          <CardSubtitle className='fw-bold mt-3'>
+            {formatCurrency(total)}
+          </CardSubtitle>
         </div>
       </Card.Body>
     </Card>
