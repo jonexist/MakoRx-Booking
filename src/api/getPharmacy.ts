@@ -1,48 +1,17 @@
 import { Map, Marker } from 'mapbox-gl';
 import { MutableRefObject } from 'react';
+import { TEndpointProps, TPharmacyDataProps } from '../type';
 import { addPopupToMarker } from '../utilities/addPopupToMarker';
 
-type EndpointProps = {
-  placeType: string;
-  token: string;
-  lng: number;
-  lat: number;
-};
-
-export interface ServiceType {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-}
-
-export interface PharmacyDataProps {
-  id: string;
-  place_name: string;
-  text: string;
-  geometry: {
-    coordinates: [number, number];
-  };
-  properties: {
-    address: string;
-    category: string;
-    foursquare: string;
-    landmark: boolean;
-    maki: string;
-  };
-  services: ServiceType[];
-  service?: ServiceType;
-}
-
-type PharmacyProps = {
+type TPharmacyProps = {
   map: Map;
-  pharmacyData: PharmacyDataProps;
+  pharmacyData: TPharmacyDataProps;
   markerRef: {
     current: Marker[];
   };
 };
 
-type GetPharmacyProps = {
+type TGetPharmacyProps = {
   mapRef: React.MutableRefObject<Map | null>;
   locationCoords: [number, number];
   token: string;
@@ -50,14 +19,14 @@ type GetPharmacyProps = {
   abortController: AbortController;
 };
 
-const pharmacyEndpoint = ({ placeType, lng, lat, token }: EndpointProps) =>
+const pharmacyEndpoint = ({ placeType, lng, lat, token }: TEndpointProps) =>
   `https://api.mapbox.com/geocoding/v5/mapbox.places/${placeType}.json?proximity=${lng},${lat}&access_token=${token}`;
 
 const processPharmacyData = ({
   map,
   pharmacyData,
   markerRef,
-}: PharmacyProps) => {
+}: TPharmacyProps) => {
   const { coordinates } = pharmacyData.geometry;
 
   const marker = new Marker().setLngLat(coordinates).addTo(map);
@@ -79,7 +48,7 @@ const getPharmacy = async ({
   token,
   markersRef,
   abortController,
-}: GetPharmacyProps) => {
+}: TGetPharmacyProps) => {
   const [lng, lat] = locationCoords;
   const placeType = 'pharmacy';
   const endpoint = pharmacyEndpoint({ placeType, lng, lat, token });
@@ -89,7 +58,7 @@ const getPharmacy = async ({
   try {
     const response = await fetch(endpoint, { signal: abortController.signal });
     const data = await response.json();
-    data.features.forEach((pharmacyData: PharmacyDataProps) => {
+    data.features.forEach((pharmacyData: TPharmacyDataProps) => {
       processPharmacyData({
         map: mapRef.current!,
         pharmacyData,

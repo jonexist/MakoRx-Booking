@@ -1,18 +1,12 @@
 import { Card, CardSubtitle, CardText, CardTitle } from 'react-bootstrap';
+import { TService } from '../../type';
 
-type Service = {
-  id: number;
-  title: string;
-  price: number;
-  quantity: number;
+type TTotalCardProps = {
+  services: TService[];
+  total: number;
 };
 
-interface TotalCardProps {
-  services: Service[];
-  total: number;
-}
-
-export const TotalCard: React.FC<TotalCardProps> = ({ services, total }) => {
+export const Total: React.FC<TTotalCardProps> = ({ services, total }) => {
   return (
     <Card>
       <Card.Body>

@@ -1,20 +1,19 @@
-import { useContext } from 'react';
 import { Card, CardText, CardTitle, Form } from 'react-bootstrap';
-import { PharmacyDataProps, ServiceType } from '../../api/getPharmacy';
-import { ServiceContext } from '../../context/ServiceContext';
+import { useServiceContext } from '../../context/useServiceContext';
+import { TPharmacyDataProps, TServiceType } from '../../type';
 
-type ServiceCardProps = {
-  data: PharmacyDataProps & { service: ServiceType };
+type TServiceCardProps = {
+  data: TPharmacyDataProps & { service: TServiceType };
 };
 
-export const ServiceCard = ({ data }: ServiceCardProps) => {
+export const Service = ({ data }: TServiceCardProps) => {
   const {
     getItemQuantity,
     increaseItemQuantity,
     decreaseItemQuantity,
     toggleServiceSelection,
     serviceItem,
-  } = useContext(ServiceContext);
+  } = useServiceContext();
   const service = data.service;
   const isSelected = serviceItem.find(
     (item) => item.id === service.id

@@ -1,25 +1,20 @@
 import mapboxgl from 'mapbox-gl';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import getPharmacy, { PharmacyDataProps } from '../api/getPharmacy';
+import getPharmacy from '../api/getPharmacy';
+import { TMapStateProps, TPharmacyDataProps } from '../type';
 import getUserLocation from '../utilities/addGeolocateControl';
 import { addNavigationControl } from '../utilities/addNavigationControl';
 import addSearchControl from '../utilities/addSearchControl';
 
 mapboxgl.accessToken = import.meta.env.VITE_API_KEY as string;
 
-type MapStateProps = {
-  lng: number;
-  lat: number;
-  zoom?: number;
-};
-
 export const useMap = () => {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
-  const [pharmacyData, setPharmacyData] = useState<PharmacyDataProps[]>([]);
+  const [pharmacyData, setPharmacyData] = useState<TPharmacyDataProps[]>([]);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const markerRef = useRef<mapboxgl.Marker[]>([]);
   const geocoderRef = useRef(null);
-  const [mapState, setMapState] = useState<MapStateProps>({
+  const [mapState, setMapState] = useState<TMapStateProps>({
     lng: -80.5801,
     lat: 35.4091,
     zoom: 11,
@@ -34,7 +29,7 @@ export const useMap = () => {
     if (mapRef.current) return;
     const map = new mapboxgl.Map({
       container: mapContainerRef.current!,
-      style: 'mapbox://styles/mapbox/streets-v12',
+      style: 'mapbox://styles/mapbox/outdoors-v12',
       center: [mapState.lng, mapState.lat],
       zoom: mapState.zoom,
     });

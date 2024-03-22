@@ -6,13 +6,13 @@ import {
   CardText,
   CardTitle,
 } from 'react-bootstrap';
-import { PharmacyDataProps } from '../../api/getPharmacy';
+import { TPharmacyDataProps } from '../../type';
 
-type SelectedPharmacyCardProps = {
-  data: PharmacyDataProps;
+type TSelectedPharmacyCardProps = {
+  data: TPharmacyDataProps;
 };
 
-export const SelectedPharmacyCard = ({ data }: SelectedPharmacyCardProps) => {
+export const SelectedPharmacy = ({ data }: TSelectedPharmacyCardProps) => {
   return (
     <Card style={{ width: '20.5rem' }} className='mt-4 p-4'>
       <CardSubtitle className='text-capitalize mb-2'>

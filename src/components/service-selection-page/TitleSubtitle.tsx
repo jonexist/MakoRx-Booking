@@ -1,12 +1,7 @@
 import React from 'react';
+import { TTitleSubtitleProps } from '../../type';
 
-type TitleSubtitleProps = {
-  title: string;
-  subtitle?: string;
-  hasHr?: boolean;
-};
-
-export const TitleSubtitle: React.FC<TitleSubtitleProps> = ({
+export const TitleSubtitle: React.FC<TTitleSubtitleProps> = ({
   title,
   subtitle,
   hasHr,

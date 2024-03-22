@@ -1,21 +1,13 @@
 import { ReactNode, createContext, useState } from 'react';
-import { services } from '../data/pharmacyServices';
+import { pharmacyServices } from '../data/pharmacyServices';
+import { TServiceItem } from '../type';
 
-type ServiceProviderProps = {
+type TServiceProviderProps = {
   children: ReactNode;
 };
 
-type ServiceItem = {
-  id: number;
-  quantity: number;
-  selected: boolean;
-  title: string;
-  description: string;
-  price: number;
-};
-
-type ServiceContext = {
-  serviceItem: ServiceItem[];
+type TServiceContext = {
+  serviceItem: TServiceItem[];
   serviceQuantity: number;
   getItemQuantity: (id: number) => number;
   increaseItemQuantity: (id: number) => void;
@@ -23,10 +15,10 @@ type ServiceContext = {
   toggleServiceSelection: (id: number) => void;
 };
 
-export const ServiceContext = createContext({} as ServiceContext);
+export const ServiceContext = createContext({} as TServiceContext);
 
-export const ServiceProvider = ({ children }: ServiceProviderProps) => {
-  const initialServiceItems = services.map((service) => ({
+export const ServiceProvider = ({ children }: TServiceProviderProps) => {
+  const initialServiceItems = pharmacyServices.map((service) => ({
     id: service.id,
     quantity: 0,
     selected: false,
@@ -36,7 +28,7 @@ export const ServiceProvider = ({ children }: ServiceProviderProps) => {
   }));
 
   const [serviceItem, setServiceItem] =
-    useState<ServiceItem[]>(initialServiceItems);
+    useState<TServiceItem[]>(initialServiceItems);
 
   const getItemQuantity = (id: number) => {
     const item = serviceItem.find((service) => service.id === id);

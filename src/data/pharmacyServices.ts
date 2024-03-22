@@ -1,4 +1,4 @@
-export const services = [
+export const pharmacyServices = [
   {
     id: 1,
     title: 'Prescription Refill',

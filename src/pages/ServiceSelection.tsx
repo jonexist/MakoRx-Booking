@@ -1,25 +1,25 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { PharmacyDataProps } from '../api/getPharmacy';
-import { PharmacyCard } from '../components/service-selection-page/PharmacyCard';
-import { SelectedPharmacyCard } from '../components/service-selection-page/SelectedPharmacyCard';
-import { ServiceCard } from '../components/service-selection-page/ServiceCard';
+import { Pharmacy } from '../components/service-selection-page/Pharmacy';
+import { SelectedPharmacy } from '../components/service-selection-page/SelectedPharmacy';
+import { Service } from '../components/service-selection-page/Services';
 import { TitleSubtitle } from '../components/service-selection-page/TitleSubtitle';
-import { TotalCard } from '../components/service-selection-page/TotalCard';
-import { ServiceContext } from '../context/ServiceContext';
-import { services } from '../data/pharmacyServices';
+import { Total } from '../components/service-selection-page/Total';
+import { useServiceContext } from '../context/useServiceContext';
+import { pharmacyServices } from '../data/pharmacyServices';
 import { useMap } from '../hooks/useMap';
+import { TPharmacyDataProps } from '../type';
 
 export const ServiceSelection = () => {
-  const { serviceItem } = useContext(ServiceContext);
+  const { serviceItem } = useServiceContext();
   const { mapContainerRef, pharmacyData } = useMap();
   const [selectedPharmacy, setSelectedPharmacy] =
-    useState<PharmacyDataProps | null>(null);
+    useState<TPharmacyDataProps | null>(null);
 
-  const handlePharmacySelection = (pharmacy: PharmacyDataProps) => {
+  const handlePharmacySelection = (pharmacy: TPharmacyDataProps) => {
     setSelectedPharmacy({
       ...pharmacy,
-      services: services,
+      services: pharmacyServices,
     });
   };
 
@@ -44,7 +44,7 @@ export const ServiceSelection = () => {
           {pharmacyData &&
             pharmacyData.length > 0 &&
             pharmacyData.map((data) => (
-              <PharmacyCard
+              <Pharmacy
                 selectedId={selectedPharmacy?.id || ''}
                 key={data.id}
                 data={data}
@@ -57,7 +57,7 @@ export const ServiceSelection = () => {
         {selectedPharmacy && (
           <>
             <div>
-              <SelectedPharmacyCard data={selectedPharmacy} />
+              <SelectedPharmacy data={selectedPharmacy} />
             </div>
             <Container className='mt-4'>
               <TitleSubtitle
@@ -68,7 +68,7 @@ export const ServiceSelection = () => {
                 {selectedPharmacy.services.map((service) => {
                   return (
                     <Col key={service.id} className='mb-3'>
-                      <ServiceCard
+                      <Service
                         data={{
                           ...selectedPharmacy,
                           service: service,
@@ -83,7 +83,7 @@ export const ServiceSelection = () => {
                   <p className='text-muted'>No services selected</p>
                 </div>
               ) : (
-                <TotalCard services={selectedServices} total={total} />
+                <Total services={selectedServices} total={total} />
               )}
             </Container>
           </>

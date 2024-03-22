@@ -1,17 +1,17 @@
 import { Button, Card, CardBody, CardText, CardTitle } from 'react-bootstrap';
-import { PharmacyDataProps } from '../../api/getPharmacy';
+import { TPharmacyDataProps } from '../../type';
 
-type PharmacyCardProps = {
-  data: PharmacyDataProps;
+type TPharmacyCardProps = {
+  data: TPharmacyDataProps;
   selectedId: string;
-  onSelect: (pharmacy: PharmacyDataProps) => void;
+  onSelect: (pharmacy: TPharmacyDataProps) => void;
 };
 
-export const PharmacyCard = ({
+export const Pharmacy = ({
   data,
   onSelect,
   selectedId,
-}: PharmacyCardProps) => {
+}: TPharmacyCardProps) => {
   return (
     <Card
       style={{
