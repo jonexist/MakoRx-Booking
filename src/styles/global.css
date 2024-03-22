@@ -4,7 +4,7 @@
   --font-family: "Montserrat", sans-serif !important;
   --primary-color: #29abe2 !important;
   --secondary-color: #e9f3ff !important;
-  --font-color-dark: #545f71 !important;
+  --color-dark: #545f71 !important;
   --font-color-light: #ffffff !important;
 }
 
@@ -36,19 +36,17 @@ body {
 .header__title {
   font-size: 24px !important;
   font-weight: 700;
-  color: var(--font-color-dark);
   margin-bottom: 10px;
 }
 .header__title .header__subtitle {
   font-size: 16px !important;
-  color: var(--font-color-dark);
 }
 
 .mapboxgl {
   position: relative;
   font-family: var(--font-family);
   width: 100%;
-  height: 600px;
+  height: 650px;
   border-radius: 5px !important;
 }
 .mapboxgl .mapboxgl-popup-content {
@@ -57,11 +55,11 @@ body {
 }
 .mapboxgl .mapboxgl-ctrl-geocoder .suggestions {
   font-family: var(--font-family);
-  color: var(--font-color-dark);
+  color: var(--color-dark);
 }
 .mapboxgl .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--input {
   font-family: var(--font-family);
-  color: var(--font-color-dark);
+  color: var(--color-dark);
 }
 
 .card__container {
@@ -96,7 +94,7 @@ body {
   align-items: center;
 }
 .counter .counter__btn {
-  background-color: var(--font-color-dark);
+  background-color: var(--color-dark);
   border: 0;
   border-radius: 0.25rem;
   color: var(--font-color-light);
@@ -105,7 +103,7 @@ body {
 }
 .counter .counter__display {
   background-color: var(--font-color-light);
-  border: 2px solid var(--font-color-dark);
+  border: 2px solid var(--color-dark);
   border-radius: 0.25rem;
   font-weight: 500;
   height: 28px;
@@ -119,5 +117,20 @@ body {
 }
 
 .subtotal {
-  border-top: 2px solid var(--font-color-dark);
+  border-top: 2px solid var(--color-dark);
+}
+
+.contact {
+  margin-bottom: 0px !important;
+}
+
+.contact__btn {
+  background-color: var(--font-color-light) !important;
+  color: var(--primary-color) !important;
+  border: 1px solid var(--primary-color) !important;
+  border-radius: 20px !important;
+}
+.contact__btn:hover {
+  background-color: var(--primary-color) !important;
+  color: white !important;
 }/*# sourceMappingURL=global.css.map */
