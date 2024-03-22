@@ -15,11 +15,11 @@ type TSelectedPharmacyCardProps = {
 
 export const SelectedPharmacy = ({ data }: TSelectedPharmacyCardProps) => {
   return (
-    <Card style={{ width: '20.5rem' }} className='mt-4 p-4'>
+    <Card style={{ width: '23rem' }} className='mt-4 p-4'>
       <CardSubtitle className='text-capitalize text-muted mb-3'>
         {`Selected ${data.properties.category}`}
       </CardSubtitle>
-      <CardImg variant='top' src='https://placeholder.pics/svg/500x250' />
+      <CardImg variant='top' src='https://placeholder.pics/svg/500x300' />
       <CardTitle className='mt-3 fw-bold'>{data.text}</CardTitle>
       <CardText>{data.place_name}</CardText>
       <Contact
