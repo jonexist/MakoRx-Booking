@@ -32,7 +32,10 @@ export const ServiceSelection = () => {
   return (
     <Container
       className='min-vh-100'
-      style={{ paddingTop: '8.5rem', paddingBottom: '1.5rem' }}
+      style={{
+        paddingTop: '8.5rem',
+        paddingBottom: selectedPharmacy ? '1.5rem' : '0',
+      }}
     >
       <TitleSubtitle
         title='Book an Appointment'

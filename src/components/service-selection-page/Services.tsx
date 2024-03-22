@@ -1,6 +1,7 @@
 import { Card, CardText, CardTitle, Form } from 'react-bootstrap';
 import { useServiceContext } from '../../context/useServiceContext';
 import { TPharmacyDataProps, TServiceType } from '../../type';
+import { formatCurrency } from '../../utilities/formatCurrency';
 
 type TServiceCardProps = {
   data: TPharmacyDataProps & { service: TServiceType };
@@ -25,7 +26,7 @@ export const Service = ({ data }: TServiceCardProps) => {
         <Card.Body>
           <div className='d-flex align-items-center justify-content-between'>
             <CardTitle>{service.title}</CardTitle>
-            <CardText>{`$${service.price}`}</CardText>
+            <CardText>{formatCurrency(service.price)}</CardText>
           </div>
           <CardText className='text-truncate'>{service.description}</CardText>
           <div
