@@ -59,4 +59,4 @@ export const services = [
     description: 'Get help with weight management from our health experts.',
     price: 49.99,
   },
-];
+].sort((a, b) => a.title.localeCompare(b.title));
