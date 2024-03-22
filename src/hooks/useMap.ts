@@ -29,7 +29,7 @@ export const useMap = () => {
     if (mapRef.current) return;
     const map = new mapboxgl.Map({
       container: mapContainerRef.current!,
-      style: 'mapbox://styles/mapbox/outdoors-v12',
+      style: 'mapbox://styles/mapbox/streets-v12',
       center: [mapState.lng, mapState.lat],
       zoom: mapState.zoom,
     });

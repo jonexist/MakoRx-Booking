@@ -62,3 +62,17 @@ export type TMapStateProps = {
   lat: number;
   zoom?: number;
 };
+
+export type TContact = {
+  email: string;
+  phone: string;
+  area: string;
+  hours: string;
+};
+
+export type TContactField = {
+  label: string;
+  value: string;
+  isLink?: boolean;
+  linkValue?: string;
+};

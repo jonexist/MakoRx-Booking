@@ -40,6 +40,7 @@ export const ServiceSelection = () => {
       <TitleSubtitle
         title='Book an Appointment'
         subtitle='Book your pharmacy visit - MAKO Rx Care Connect works together to provide you special services and testing.'
+        hasHr={true}
       />
 
       <div ref={mapContainerRef} className='mapboxgl'>
@@ -64,7 +65,8 @@ export const ServiceSelection = () => {
             </div>
             <Container className='mt-4'>
               <TitleSubtitle
-                title={`${selectedPharmacy.text} Services`}
+                title={selectedPharmacy.text}
+                subtitle={`List of Tests & Services in ${selectedPharmacy.text}`}
                 hasHr={true}
               />
               <Row xl={2}>
