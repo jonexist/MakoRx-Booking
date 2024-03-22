@@ -6,27 +6,30 @@ import { addPopupToMarker } from '../utilities/addPopupToMarker';
 type TPharmacyProps = {
   map: Map;
   pharmacyData: TPharmacyDataProps;
-  markerRef: {
-    current: Marker[];
-  };
+  markerRef: MutableRefObject<Marker[]>;
 };
 
 type TGetPharmacyProps = {
-  mapRef: React.MutableRefObject<Map | null>;
+  mapRef: MutableRefObject<Map | null>;
   locationCoords: [number, number];
   token: string;
   markersRef: MutableRefObject<Marker[]>;
   abortController: AbortController;
 };
 
-const pharmacyEndpoint = ({ placeType, lng, lat, token }: TEndpointProps) =>
+const pharmacyEndpoint = ({
+  placeType,
+  lng,
+  lat,
+  token,
+}: TEndpointProps): string =>
   `https://api.mapbox.com/geocoding/v5/mapbox.places/${placeType}.json?proximity=${lng},${lat}&access_token=${token}`;
 
 const processPharmacyData = ({
   map,
   pharmacyData,
   markerRef,
-}: TPharmacyProps) => {
+}: TPharmacyProps): void => {
   const { coordinates } = pharmacyData.geometry;
 
   const marker = new Marker().setLngLat(coordinates).addTo(map);
@@ -48,7 +51,7 @@ const getPharmacy = async ({
   token,
   markersRef,
   abortController,
-}: TGetPharmacyProps) => {
+}: TGetPharmacyProps): Promise<TPharmacyDataProps[] | undefined> => {
   const [lng, lat] = locationCoords;
   const placeType = 'pharmacy';
   const endpoint = pharmacyEndpoint({ placeType, lng, lat, token });

@@ -8,11 +8,12 @@ type TServiceProviderProps = {
 
 type TServiceContext = {
   serviceItem: TServiceItem[];
-  serviceQuantity: number;
   getItemQuantity: (id: number) => number;
   increaseItemQuantity: (id: number) => void;
   decreaseItemQuantity: (id: number) => void;
   toggleServiceSelection: (id: number) => void;
+  selectedServices: TServiceItem[];
+  total: number;
 };
 
 export const ServiceContext = createContext({} as TServiceContext);
@@ -37,54 +38,56 @@ export const ServiceProvider = ({ children }: TServiceProviderProps) => {
 
   const increaseItemQuantity = (id: number) => {
     setServiceItem((prev) =>
-      prev.map((service) =>
-        service.id === id
-          ? { ...service, quantity: service.quantity + 1 }
-          : service
+      prev.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
       )
     );
   };
 
   const decreaseItemQuantity = (id: number) => {
     setServiceItem((prev) =>
-      prev.map((service) =>
-        service.id === id
+      prev.map((item) =>
+        item.id === id
           ? {
-              ...service,
-              quantity: service.quantity - 1,
-              selected: service.quantity > 1 ? true : false,
+              ...item,
+              quantity: item.quantity - 1,
+              selected: item.quantity > 1 ? true : false,
             }
-          : service
+          : item
       )
     );
   };
 
   const toggleServiceSelection = (id: number) => {
     setServiceItem((prev) =>
-      prev.map((service) =>
-        service.id === id
+      prev.map((item) =>
+        item.id === id
           ? {
-              ...service,
-              selected: !service.selected,
-              quantity: service.selected ? 0 : 1,
+              ...item,
+              selected: !item.selected,
+              quantity: item.selected ? 0 : 1,
             }
-          : service
+          : item
       )
     );
   };
+
+  const selectedServices = serviceItem.filter((item) => item.selected);
+  const total = selectedServices.reduce(
+    (prevValue, currValue) => prevValue + currValue.price * currValue.quantity,
+    0
+  );
 
   return (
     <ServiceContext.Provider
       value={{
         serviceItem,
-        serviceQuantity: serviceItem.reduce(
-          (acc, service) => acc + service.quantity,
-          0
-        ),
         getItemQuantity,
         increaseItemQuantity,
         decreaseItemQuantity,
         toggleServiceSelection,
+        selectedServices,
+        total,
       }}
     >
       {children}
