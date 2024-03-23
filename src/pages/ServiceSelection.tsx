@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Pharmacy } from '../components/service-selection-page/Pharmacy';
 import { SelectedPharmacy } from '../components/service-selection-page/SelectedPharmacy';
@@ -11,10 +10,9 @@ import { useMap } from '../hooks/useMap';
 import { TPharmacyDataProps } from '../type';
 
 export const ServiceSelection = () => {
-  const { selectedServices, total } = useServiceContext();
+  const { selectedServices, selectedPharmacy, setSelectedPharmacy, total } =
+    useServiceContext();
   const { mapContainerRef, pharmacyData } = useMap();
-  const [selectedPharmacy, setSelectedPharmacy] =
-    useState<TPharmacyDataProps | null>(null);
 
   const handlePharmacySelection = (pharmacy: TPharmacyDataProps) => {
     setSelectedPharmacy({

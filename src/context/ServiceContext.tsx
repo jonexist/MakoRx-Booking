@@ -1,6 +1,6 @@
-import { ReactNode, createContext, useState } from 'react';
+import { ReactNode, createContext, useEffect, useState } from 'react';
 import { pharmacyServices } from '../data/pharmacyServices';
-import { TServiceItem } from '../type';
+import { TPharmacyDataProps, TServiceItem } from '../type';
 
 type TServiceProviderProps = {
   children: ReactNode;
@@ -13,6 +13,8 @@ type TServiceContext = {
   decreaseItemQuantity: (id: number) => void;
   toggleServiceSelection: (id: number) => void;
   selectedServices: TServiceItem[];
+  selectedPharmacy: TPharmacyDataProps | null;
+  setSelectedPharmacy: (pharmacy: TPharmacyDataProps | null) => void;
   total: number;
 };
 
@@ -30,6 +32,22 @@ export const ServiceProvider = ({ children }: TServiceProviderProps) => {
 
   const [serviceItem, setServiceItem] =
     useState<TServiceItem[]>(initialServiceItems);
+  const [selectedServices, setSelectedServices] = useState<TServiceItem[]>([]);
+  const [selectedPharmacy, setSelectedPharmacy] =
+    useState<TPharmacyDataProps | null>(null);
+  const [total, setTotal] = useState<number>(0);
+
+  useEffect(() => {
+    const updatedSelectedServices = serviceItem.filter((item) => item.selected);
+    setSelectedServices(updatedSelectedServices);
+
+    const updatedTotal = updatedSelectedServices.reduce(
+      (prevValue, currValue) =>
+        prevValue + currValue.price * currValue.quantity,
+      0
+    );
+    setTotal(updatedTotal);
+  }, [serviceItem, selectedPharmacy]);
 
   const getItemQuantity = (id: number) => {
     const item = serviceItem.find((service) => service.id === id);
@@ -72,12 +90,6 @@ export const ServiceProvider = ({ children }: TServiceProviderProps) => {
     );
   };
 
-  const selectedServices = serviceItem.filter((item) => item.selected);
-  const total = selectedServices.reduce(
-    (prevValue, currValue) => prevValue + currValue.price * currValue.quantity,
-    0
-  );
-
   return (
     <ServiceContext.Provider
       value={{
@@ -87,6 +99,8 @@ export const ServiceProvider = ({ children }: TServiceProviderProps) => {
         decreaseItemQuantity,
         toggleServiceSelection,
         selectedServices,
+        selectedPharmacy,
+        setSelectedPharmacy,
         total,
       }}
     >
