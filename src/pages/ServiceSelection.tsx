@@ -1,4 +1,5 @@
-import { Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { Pharmacy } from '../components/service-selection-page/Pharmacy';
 import { SelectedPharmacy } from '../components/service-selection-page/SelectedPharmacy';
 import { Service } from '../components/service-selection-page/Services';
@@ -13,6 +14,7 @@ export const ServiceSelection = () => {
   const { selectedServices, selectedPharmacy, setSelectedPharmacy, total } =
     useServiceContext();
   const { mapContainerRef, pharmacyData } = useMap();
+  const navigate = useNavigate();
 
   const handlePharmacySelection = (pharmacy: TPharmacyDataProps) => {
     setSelectedPharmacy({
@@ -22,10 +24,8 @@ export const ServiceSelection = () => {
   };
 
   return (
-    <Container
-      className='min-vh-100'
+    <div
       style={{
-        paddingTop: '8.5rem',
         paddingBottom: selectedPharmacy ? '1.5rem' : '0',
       }}
     >
@@ -82,10 +82,21 @@ export const ServiceSelection = () => {
               ) : (
                 <Total services={selectedServices} total={total} />
               )}
+              {selectedServices.length > 0 ? (
+                <div className='d-flex justify-content-end mt-5'>
+                  <Button
+                    variant='primary'
+                    className='light__blue__btn px-5 py-2 fs-6'
+                    onClick={() => navigate('/select-time')}
+                  >
+                    Next
+                  </Button>
+                </div>
+              ) : null}
             </Container>
           </>
         )}
       </div>
-    </Container>
+    </div>
   );
 };
