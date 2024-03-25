@@ -133,4 +133,15 @@ body {
 .contact__btn:hover {
   background-color: var(--primary-color) !important;
   color: white !important;
+}
+
+.light__blue__btn {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  border: 1px solid var(--primary-color) !important;
+  border-radius: 20px !important;
+}
+.light__blue__btn:hover {
+  background-color: var(--font-color-light) !important;
+  color: var(--primary-color) !important;
 }/*# sourceMappingURL=global.css.map */

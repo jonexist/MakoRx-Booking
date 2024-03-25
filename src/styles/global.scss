@@ -137,3 +137,14 @@ body {
     color: white !important;
   }
 }
+
+.light__blue__btn {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  border: 1px solid var(--primary-color) !important;
+  border-radius: 20px !important;
+  &:hover {
+    background-color: var(--font-color-light) !important;
+    color: var(--primary-color) !important;
+  }
+}
