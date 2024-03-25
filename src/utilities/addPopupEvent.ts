@@ -7,10 +7,10 @@ type PopupProps = {
 };
 
 export const addPopupEvent = ({ map, marker, popup }: PopupProps): void => {
-  marker.getElement().addEventListener('mouseenter', () => {
+  marker.getElement().addEventListener('click', () => {
     popup.setLngLat(marker.getLngLat()).addTo(map);
   });
-  marker.getElement().addEventListener('mouseleave', () => {
+  marker.getElement().addEventListener('close', () => {
     popup.remove();
   });
 };
