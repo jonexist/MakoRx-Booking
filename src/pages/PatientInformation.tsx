@@ -2,7 +2,7 @@ import { PlusIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import PatientDetails from '../components/patient-information/PatientDetails';
-import { TitleSubtitle } from '../components/service-selection-page/TitleSubtitle';
+import { TitleSubtitle } from '../components/ui/TitleSubtitle';
 import formData from '../data/formData';
 
 export const PatientInformation = () => {

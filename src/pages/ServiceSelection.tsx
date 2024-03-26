@@ -1,10 +1,10 @@
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { Pharmacy } from '../components/service-selection-page/Pharmacy';
-import { SelectedPharmacy } from '../components/service-selection-page/SelectedPharmacy';
-import { Service } from '../components/service-selection-page/Services';
-import { TitleSubtitle } from '../components/service-selection-page/TitleSubtitle';
-import { Total } from '../components/service-selection-page/Total';
+import { Pharmacy } from '../components/service-selection/Pharmacy';
+import { SelectedPharmacy } from '../components/service-selection/SelectedPharmacy';
+import { Service } from '../components/service-selection/Services';
+import { Total } from '../components/service-selection/Total';
+import { TitleSubtitle } from '../components/ui/TitleSubtitle';
 import { useServiceContext } from '../context/useServiceContext';
 import { pharmacyServices } from '../data/pharmacyServices';
 import { useMap } from '../hooks/useMap';
