@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import { CloseButton, Col, Row } from 'react-bootstrap'
-import Input from '../ui/Input'
-import Select from '../ui/Select'
-import DatePicker from '../ui/data-picker'
-import { isMinor } from '../../utilities/getPatientAge'
+import { useState } from 'react';
+import { Button, CloseButton, Col, Row } from 'react-bootstrap';
+import { isMinor } from '../../utilities/getPatientAge';
+import Input from '../ui/Input';
+import Select from '../ui/Select';
+import DatePicker from '../ui/date-picker';
 
 type PatientDetailsProps = {
-  number: number
-  removePatient: () => void
-  index: number
-}
+  number: number;
+  removePatient: () => void;
+  index: number;
+};
 
 export const PatientDetails = ({
   number,
   removePatient,
   index,
 }: PatientDetailsProps) => {
-  const [date, setDate] = useState(new Date())
+  const [date, setDate] = useState<Date | null>(null);
 
-  const selectedDate = date.toISOString().substring(0, 10)
+  const selectedDate = date ? date.toISOString().substring(0, 10) : null;
 
   const selectDate = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newDate = new Date(event.target.value)
-    setDate(newDate)
-  }
+    const newDate = event.target.value ? new Date(event.target.value) : null;
+    setDate(newDate);
+  };
 
   return (
     <div className='mb-3 border-bottom'>
       <div className='d-flex gap-4'>
         <div style={{ width: '10rem' }}>
           <p>Patient # {number}</p>
+          <Button variant='link' className='p-0'>
+            Hide
+          </Button>
         </div>
         <div className='flex-grow-1 d-flex gap-3 w-100 flex-column'>
           <div className='d-flex gap-2 w-100 flex-column mb-2'>
@@ -101,7 +104,7 @@ export const PatientDetails = ({
               </Col>
             </Row>
           </div>
-          {!isMinor(date) && (
+          {date && isMinor(date) && (
             <div className='d-flex gap-2 w-100 flex-column mb-3'>
               <h5>Guardian’s Details</h5>
               <Row className='mb-2'>
@@ -145,7 +148,7 @@ export const PatientDetails = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PatientDetails
+export default PatientDetails;
