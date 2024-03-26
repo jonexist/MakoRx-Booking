@@ -59,7 +59,7 @@ export const ServiceSelection = () => {
               <TitleSubtitle
                 title={selectedPharmacy.text}
                 subtitle={`List of Tests & Services in ${selectedPharmacy.text}`}
-                hasHr={true}
+                hasHr
               />
               <Row xl={2}>
                 {selectedPharmacy.services.map((service) => {
@@ -86,7 +86,7 @@ export const ServiceSelection = () => {
                 <div className='d-flex justify-content-end mt-5'>
                   <Button
                     variant='primary'
-                    className='light__blue__btn px-5 py-2 fs-6'
+                    className='light__blue_primary px-5 py-2 fs-6'
                     onClick={() => navigate('/select-time')}
                   >
                     Next

@@ -135,13 +135,55 @@ body {
   color: white !important;
 }
 
-.light__blue__btn {
+.light__blue_primary {
   background-color: var(--primary-color) !important;
-  color: white !important;
+  color: var(--font-color-light) !important;
   border: 1px solid var(--primary-color) !important;
   border-radius: 20px !important;
 }
-.light__blue__btn:hover {
+.light__blue_primary:hover {
   background-color: var(--font-color-light) !important;
   color: var(--primary-color) !important;
+}
+
+.light__blue_secondary {
+  background-color: var(--font-color-light) !important;
+  color: var(--primary-color) !important;
+  border: 1px solid var(--primary-color) !important;
+  border-radius: 20px !important;
+}
+.light__blue_secondary:hover {
+  background-color: var(--primary-color) !important;
+  color: var(--font-color-light) !important;
+}
+
+.image__upload {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+.image__upload .image__upload_icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.image__upload .image__upload_icon img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+.image__upload .image__remove {
+  position: absolute;
+  bottom: 0;
+  left: 55%;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
 }/*# sourceMappingURL=global.css.map */

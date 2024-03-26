@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Button, CloseButton, Col, Row } from 'react-bootstrap';
+import { CloseButton, Col, Row } from 'react-bootstrap';
 import { isMinor } from '../../utilities/getPatientAge';
+import DatePicker from '../ui/DatePicker';
 import Input from '../ui/Input';
 import Select from '../ui/Select';
-import DatePicker from '../ui/date-picker';
+import { UploadImage } from '../ui/upload';
 
 type PatientDetailsProps = {
   number: number;
@@ -17,6 +18,7 @@ export const PatientDetails = ({
   index,
 }: PatientDetailsProps) => {
   const [date, setDate] = useState<Date | null>(null);
+  const [image, setImage] = useState<string | null>(null);
 
   const selectedDate = date ? date.toISOString().substring(0, 10) : null;
 
@@ -25,14 +27,28 @@ export const PatientDetails = ({
     setDate(newDate);
   };
 
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => setImage(reader.result as string);
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleRemoveImage = () => setImage(null);
+
   return (
     <div className='mb-3 border-bottom'>
       <div className='d-flex gap-4'>
         <div style={{ width: '10rem' }}>
           <p>Patient # {number}</p>
-          <Button variant='link' className='p-0'>
-            Hide
-          </Button>
+          <UploadImage
+            id={`file-input-${number}`}
+            image={image}
+            handleImageUpload={handleImageUpload}
+            handleRemoveImage={handleRemoveImage}
+          />
         </div>
         <div className='flex-grow-1 d-flex gap-3 w-100 flex-column'>
           <div className='d-flex gap-2 w-100 flex-column mb-2'>
